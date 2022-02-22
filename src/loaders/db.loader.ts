@@ -15,7 +15,6 @@ const options = {
 	socketTimeoutMS: 45000 // Close sockets after 45 seconds of inactivity
 };
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace MongoConnection {
 	let _mongoServer: MongoMemoryServer;
 	export const open = async (): Promise<void> => {

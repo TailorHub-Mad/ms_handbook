@@ -4,7 +4,6 @@ type Key = string | number;
 
 const ttlSeconds = 60; // tiempo de vida del cache en segundos.
 
-// eslint-disable-next-line @typescript-eslint/no-namespace
 export namespace CacheLocal {
 	const cache: NodeCache = new NodeCache({
 		stdTTL: ttlSeconds,
