@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "emitDecoratorMetadata": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "module": "commonjs",
+    "outDir": "./dist",
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "es2020",
+    "moduleResolution": "node",
+    "paths": {
+      "@constants/*": ["./src/constants/*"],
+      "@utils": ["./src/utils"],
+      "@log": ["./src/loaders/log.loader"],
+      "@errors/*": ["./src/errors/*"],
+      "@models/*": ["./src/models/*"],
+      "@validations/*": ["./src/validations/*"],
+      "@repositories/*": ["./src/repositories/*"],
+      "@controllers/*": ["./src/controllers/*"],
+      "@interfaces/*": ["./src/interfaces/*"],
+      "@enums/*": ["./src/enums/*"]
+    },
+    "types": ["jest", "node"],
+    "typeRoots": ["./node_modules/@types", "src/@types"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules","src/test" , "**/*.test.ts", "config"]
+}
