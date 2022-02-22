@@ -1,5 +1,5 @@
 import 'dotenv/config';
-
+import './loaders/log.loader';
 import * as http from 'http';
 import express from 'express';
 import { PORT } from '@constants/env.constants';

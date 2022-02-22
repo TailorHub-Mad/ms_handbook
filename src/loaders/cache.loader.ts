@@ -3,6 +3,7 @@ import NodeCache from 'node-cache';
 type Key = string | number;
 
 class CacheLocal {
+	// eslint-disable-next-line no-use-before-define
 	private static _instance: CacheLocal;
 
 	private cache: NodeCache;

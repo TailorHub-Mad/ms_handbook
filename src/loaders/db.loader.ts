@@ -8,7 +8,6 @@ mongoose.set('debug', true);
 const options = {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-	useCreateIndex: true,
 	keepAlive: true,
 	keepAliveInitialDelay: 300000,
 	autoIndex: true, // Dev == true; Prod == false
@@ -19,6 +18,7 @@ const options = {
  * Creamos una clase para la ejecución de Mongo.
  */
 class MongoConnection {
+	// eslint-disable-next-line no-use-before-define
 	private static _instance: MongoConnection;
 
 	private _mongoServer?: MongoMemoryServer;

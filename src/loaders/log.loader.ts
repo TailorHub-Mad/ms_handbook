@@ -52,6 +52,4 @@ const logger = winston.createLogger({
 });
 
 // Lo añadimos en global para poder utilizarlo en toda la aplicación sin tener que importarlo.
-global.logger = logger;
-
-export default logger;
+(global as { logger?: winston.Logger }).logger = logger;

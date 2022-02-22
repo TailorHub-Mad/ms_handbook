@@ -1,4 +1,3 @@
-import logger from '@log';
 import { NextFunction, Request, Response } from 'express';
 import { IError } from '../interfaces';
 

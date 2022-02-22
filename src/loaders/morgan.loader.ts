@@ -1,11 +1,9 @@
 import morgan, { StreamOptions } from 'morgan';
 import { Request, Response } from 'express';
 
-import looger from './log.loader';
-
 // Cuando escriba utilizará http de winston.
 const stream: StreamOptions = {
-	write: (message) => looger.http(message)
+	write: (message) => logger.http(message)
 };
 
 // Solo se ejecutará cuando este en dev y el estado sea menor que 400.
