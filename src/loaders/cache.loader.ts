@@ -2,35 +2,21 @@ import NodeCache from 'node-cache';
 
 type Key = string | number;
 
-class CacheLocal {
-	// eslint-disable-next-line no-use-before-define
-	private static _instance: CacheLocal;
+const ttlSeconds = 60; // tiempo de vida del cache en segundos.
 
-	private cache: NodeCache;
+// eslint-disable-next-line @typescript-eslint/no-namespace
+export namespace CacheLocal {
+	const cache: NodeCache = new NodeCache({
+		stdTTL: ttlSeconds,
+		checkperiod: ttlSeconds * 0.2,
+		useClones: false
+	});
 
-	private constructor(ttlSeconds: number) {
-		this.cache = new NodeCache({
-			stdTTL: ttlSeconds,
-			checkperiod: ttlSeconds * 0.2,
-			useClones: false
-		});
-	}
+	export const get = <T>(key: Key): T | undefined => {
+		return cache.get<T>(key);
+	};
 
-	// inicializamos la clase si no existe ya una instancia, si existe la devolvemos
-	public static getInstance(): CacheLocal {
-		if (!CacheLocal._instance) {
-			CacheLocal._instance = new CacheLocal(60); // tiempo de vida del cache en segundos.
-		}
-		return CacheLocal._instance;
-	}
-
-	public get<T>(key: Key): T | undefined {
-		return this.cache.get<T>(key);
-	}
-
-	public set<T>(key: Key, value: T): void {
-		this.cache.set(key, value);
-	}
+	export const set = <T>(key: Key, value: T): void => {
+		cache.set<T>(key, value);
+	};
 }
-
-export default CacheLocal.getInstance();

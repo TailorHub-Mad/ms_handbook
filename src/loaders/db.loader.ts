@@ -14,28 +14,16 @@ const options = {
 	serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
 	socketTimeoutMS: 45000 // Close sockets after 45 seconds of inactivity
 };
-/**
- * Creamos una clase para la ejecución de Mongo.
- */
-class MongoConnection {
-	// eslint-disable-next-line no-use-before-define
-	private static _instance: MongoConnection;
 
-	private _mongoServer?: MongoMemoryServer;
-
-	static getInstance(): MongoConnection {
-		if (!MongoConnection._instance) {
-			MongoConnection._instance = new MongoConnection();
-		}
-		return MongoConnection._instance;
-	}
-
-	public async open(): Promise<void> {
+// eslint-disable-next-line @typescript-eslint/no-namespace
+export namespace MongoConnection {
+	let _mongoServer: MongoMemoryServer;
+	export const open = async (): Promise<void> => {
 		try {
 			if (DATABASEURL === 'inmemory') {
 				logger.debug('connecting to inmemory mongo db');
-				this._mongoServer = new MongoMemoryServer();
-				const mongoUrl = await this._mongoServer.getUri();
+				_mongoServer = new MongoMemoryServer();
+				const mongoUrl = await _mongoServer.getUri();
 				await mongoose.connect(mongoUrl, options);
 			} else {
 				console.log('connecting to mongo db: ' + DATABASEURL);
@@ -63,19 +51,16 @@ class MongoConnection {
 			logger.error(`db.open: ${err}`);
 			throw err;
 		}
-	}
-
-	public async close(): Promise<void> {
+	};
+	export const close = async (): Promise<void> => {
 		try {
 			await mongoose.disconnect();
 			if (DATABASEURL === 'inmemory') {
-				await this._mongoServer?.stop();
+				await _mongoServer?.stop();
 			}
 		} catch (err) {
 			logger.error(`db.open: ${err}`);
 			throw err;
 		}
-	}
+	};
 }
-
-export default MongoConnection.getInstance();

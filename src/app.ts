@@ -9,7 +9,7 @@ import * as loaders from './loaders';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import { errorHandler } from './middleware/error.middleware';
-import dbLoader from './loaders/db.loader';
+import { MongoConnection } from './loaders/db.loader';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require('../package.json');
 
@@ -49,7 +49,7 @@ loaders.router(app);
 app.use(errorHandler);
 
 // Ejecutamos la BD e inicializamos el servidor.
-new Promise((resolve) => resolve(dbLoader.open()))
+new Promise((resolve) => resolve(MongoConnection.open()))
 	.then(() => {
 		const server = http.createServer(app);
 		return server;
