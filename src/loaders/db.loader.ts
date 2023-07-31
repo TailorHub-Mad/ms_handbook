@@ -8,8 +8,6 @@ mongoose.set('debug', true);
 const options = {
 	useNewUrlParser: true,
 	useUnifiedTopology: true,
-	keepAlive: true,
-	keepAliveInitialDelay: 300000,
 	autoIndex: true, // Dev == true; Prod == false
 	serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
 	socketTimeoutMS: 45000 // Close sockets after 45 seconds of inactivity

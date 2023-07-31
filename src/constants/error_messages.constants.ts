@@ -6,5 +6,3 @@ export const DATA_ERROR =
 export const MISSING_ID = 'No ID supplied';
 export const TOKEN_EXPIRED = 'Token has expired';
 export const FILE_EXT = 'Invalid file type, only JPG and PDF is allowed!';
-export const VALIDATE_DNI = 'Invalid DNI';
-export const VALIDATE_NIF = 'Invalid NIF';

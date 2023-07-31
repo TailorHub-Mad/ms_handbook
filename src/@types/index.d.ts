@@ -7,6 +7,8 @@ declare global {
 	namespace NodeJS {
 		interface ProcessEnv {
 			DATABASE_NAME: string;
+			IV_LENGTH: string;
+			KEY: string;
 		}
 	}
 
