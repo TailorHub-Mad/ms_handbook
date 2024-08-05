@@ -5,7 +5,6 @@ import { createConversation } from 'src/services/openai.service';
 export const CreateConversation = async (req: Request, res: Response) => {
 	try {
 		const { message } = req.body;
-		console.log('message', message, typeof message);
 		await openaiValidation.validateAsync({ message });
 		const response = await createConversation(message);
 		res.status(200).json(response);
