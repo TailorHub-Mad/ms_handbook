@@ -8,3 +8,5 @@ export const DATABASEURL =
 export const IV_LENGTH = +process.env.IV_LENGTH;
 export const KEY = process.env.KEY;
 export const ALGORITHM = 'aes-256-cbc';
+
+export const ASSISTANT_ID = process.env.ASSISTANT_ID;
