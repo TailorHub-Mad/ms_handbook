@@ -71,6 +71,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
+    "@netlify/functions": "^2.8.1",
     "compression": "^1.7.4",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
@@ -89,6 +90,7 @@
     "openai": "^4.54.0",
     "pino": "^8.14.2",
     "pino-pretty": "^10.2.0",
+    "serverless-http": "^3.2.0",
     "tslib": "^2.6.1",
     "winston": "^3.10.0"
   }
