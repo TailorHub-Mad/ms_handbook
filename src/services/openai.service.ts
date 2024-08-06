@@ -1,6 +1,6 @@
 // openai.service.ts
+import { openai } from '@config/openai.config';
 import { ASSISTANT_ID } from '@constants/env.constants';
-import { openai } from '../../config/openai.config';
 import WebSocket from 'ws';
 
 export const createConversation = async (message: string, ws: WebSocket) => {

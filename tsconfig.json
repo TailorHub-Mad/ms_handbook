@@ -14,6 +14,7 @@
     "target": "es2020",
     "moduleResolution": "node",
     "paths": {
+      "@config/*": ["./src/config/*"],
       "@constants/*": ["./src/constants/*"],
       "@utils": ["./src/utils"],
       "@log": ["./src/loaders/log.loader"],
