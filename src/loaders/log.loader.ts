@@ -27,7 +27,6 @@ const colors = {
 
 winston.addColors(colors);
 
-// Confiigiramos el formato que tendrán nuestros logs
 const format = winston.format.combine(
 	winston.format.timestamp({ alias: 'Base_Back', format: 'DD-MM-YYYY HH:mm:ss:ms' }),
 	winston.format.colorize({ all: true }),

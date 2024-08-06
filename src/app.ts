@@ -9,12 +9,11 @@ import * as loaders from './loaders';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import { errorHandler } from './middleware/error.middleware';
-import { MongoConnection } from './loaders/db.loader';
 import { WebSocketServer } from 'ws';
 import { openaiValidation } from '@validations/openaiValidation.validation';
 import { createConversation } from './services/openai.service';
 
-export const app = express();
+const app = express();
 
 app.use(
 	cors({
@@ -44,29 +43,23 @@ loaders.middlewares(app);
 loaders.router(app);
 app.use(errorHandler);
 
-new Promise((resolve) => resolve(MongoConnection.open()))
-	.then(() => {
-		const server = http.createServer(app);
+const server = http.createServer(app);
 
-		const wss = new WebSocketServer({ server });
+const wss = new WebSocketServer({ server });
 
-		wss.on('connection', (ws) => {
-			logger.info('** SOCKET CONNECTED **');
-			ws.on('message', async (message) => {
-				const data = JSON.parse(message.toString());
-				if (data.type === 'createConversation') {
-					await openaiValidation.validateAsync({ message: data.message });
-					await createConversation(data.message, ws);
-				}
-			});
-		});
+wss.on('connection', (ws) => {
+	console.log('** SOCKET CONNECTED **');
+	ws.on('message', async (message) => {
+		const data = JSON.parse(message.toString());
+		if (data.type === 'createConversation') {
+			await openaiValidation.validateAsync({ message: data.message });
+			await createConversation(data.message, ws);
+		}
+	});
+});
 
-		return server;
-	})
-	.then((server) => {
-		server.listen(PORT, () => {
-			logger.info(`listening on port ${PORT}!`);
-		});
-		server.on('error', loaders.onError);
-	})
-	.catch((err) => logger.error(`Error: ${err}`));
+server.listen(PORT, () => {
+	console.log(`listening on port ${PORT}!`);
+});
+
+server.on('error', loaders.onError);
