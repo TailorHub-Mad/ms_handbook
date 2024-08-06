@@ -51,6 +51,7 @@
     "@types/morgan": "^1.9.4",
     "@types/node": "^20.4.5",
     "@types/pino": "^7.0.4",
+    "@types/ws": "^8.5.12",
     "@typescript-eslint/eslint-plugin": "^6.2.0",
     "@typescript-eslint/parser": "^6.2.0",
     "eslint": "^8.46.0",
@@ -92,6 +93,7 @@
     "pino-pretty": "^10.2.0",
     "serverless-http": "^3.2.0",
     "tslib": "^2.6.1",
-    "winston": "^3.10.0"
+    "winston": "^3.10.0",
+    "ws": "^8.18.0"
   }
 }
